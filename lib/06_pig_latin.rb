@@ -1,3 +1,4 @@
+list = ("the quick brown fox")
 def translate(str_input)
   vowels=["a","e","i","o","u","y"]
   result = ""
@@ -11,8 +12,14 @@ def translate(str_input)
         check = false
       end
       if check
-        consonant << word[index]
-        word.slice!(index)
+        if word[index] == "q" && word[index+1] == "u"
+          consonant << word[index]
+          consonant << word[index+1]
+          word.slice!(index..index+1)
+        else
+          consonant << word[index]
+          word.slice!(index)
+        end
         index -=1
       end
       index +=1
@@ -21,3 +28,5 @@ def translate(str_input)
   end
   return result.strip
 end
+
+translate(list)
